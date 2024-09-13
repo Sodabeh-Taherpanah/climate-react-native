@@ -103,7 +103,8 @@ android {
         }
     }
 }
-
+react{
+ autolinkLibrariesWithApp()}
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
@@ -113,6 +114,12 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-}
+     // If react-native-permissions is not autolinked, add it manually
+    implementation project(':react-native-permissions')
 
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+    // // Ensure that codegen dependencies are linked
+    // implementation files("$buildDir/generated/source/codegen/rnpermissionsspec/java")
+}
+// Codegen configuration
+
+// apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

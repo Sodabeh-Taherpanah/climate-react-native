@@ -59,6 +59,7 @@ const WeatherHomeContainer: React.FC = () => {
       const result = await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE);
       return result === RESULTS.GRANTED;
     } else {
+      console.log('apppp');
       // Handle Android permissions separately
       const permission = await request(
         PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
@@ -81,6 +82,7 @@ const WeatherHomeContainer: React.FC = () => {
     Geolocation.getCurrentPosition(
       position => {
         console.log('Position:', position?.coords);
+        Alert.alert('Position', position?.coords?.latitude.toString());
         setLocation(position?.coords); // Update your state
       },
       error => {
